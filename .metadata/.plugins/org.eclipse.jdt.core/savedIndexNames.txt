@@ -1,0 +1,5 @@
+INDEX VERSION 1.131+D:\study\javaPractice\soldesk\workspace\.metadata\.plugins\org.eclipse.jdt.core
+195334045.index
+1608611188.index
+1694670570.index
+583426672.index

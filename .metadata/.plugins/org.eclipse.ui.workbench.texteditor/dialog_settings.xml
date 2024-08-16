@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="remove"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="remove"/>
+			<item value="delete"/>
+			<item value="modify"/>
+			<item value="Line"/>
+			<item value="일정을 입력해 주세요"/>
+			<item value="정상"/>
+			<item value="일정을 정상적으로"/>
+			<item value="일정을"/>
+			<item value="checkWeek"/>
+			<item value="요일을 다시"/>
+			<item value="올바르지"/>
+			<item value="올바르지 않은"/>
+			<item value="보실 내용을 선택해"/>
+			<item value="output"/>
+			<item value="스케쥴"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1577"/>
+		<item key="DIALOG_Y_ORIGIN" value="191"/>
+		<item key="DIALOG_WIDTH" value="340"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+</section>

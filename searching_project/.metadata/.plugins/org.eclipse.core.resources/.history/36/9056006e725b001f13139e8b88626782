@@ -1,0 +1,102 @@
+package org.joonzis.controller;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.joonzis.service.EmployeeService;
+import org.joonzis.service.EmployeeServiceImpl;
+import org.joonzis.vo.EmployeeVO;
+
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public Controller() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html; charset=utf-8");
+			
+			// 어떤 경로로 이동할건지가 담긴 cmd 형태의 요청 파라미터를 추출하여 cmd 변수에 할당  
+			// 이 변수는 switch문의 분기점으로 활용될 예정
+			String cmd = request.getParameter("cmd");
+			
+			//단순 화면 이동인지 데이터를 전달하는 이동인지 구분해야함
+			// 그래서 forward 방식일 경우 isForward를 true로 지정한 뒤 
+			// 조건값으로 forward문을 태울거고, false일 경우 sendRedirect문을 태울거임
+			// 일종의 플래그와도 같음
+			boolean isForward = false;
+			
+			// forward와 sendRedirect의 경로가 할당될 변수 
+			String path = "";
+			
+			// 서비스 인스턴스 생성
+			EmployeeService service = new EmployeeServiceImpl();
+			
+			// request에 세팅할 다중 속성(EmployeeVO 타입의 List)을 받을 list 변수와
+			// 단일 속성(EmployeeVO person 변수를 미리 선엉ㄴ
+			List<EmployeeVO> list = null;
+			EmployeeVO person = null;
+			
+			// 
+			switch (cmd) {
+			case "allList":
+				list = service.getAll();
+				request.setAttribute("list", list);
+				isForward = true;
+				path = "allList.jsp";
+			  break;
+			case "inputDept":
+				path = "inputDept.jsp";
+				break;
+			case "inputDynamic":
+				path = "inputDynamic.jsp";
+				break;
+			case "deptList":
+				list = service.getOne(Integer.parseInt(request.getParameter("department_id")));
+				request.setAttribute("list", list);
+				isForward = true;
+				path = "allList.jsp";
+				break;
+			case "dynamicList":
+				Map<String, String> searching = new HashMap<>();
+				String type = request.getParameter("type");
+				String searchingContent = request.getParameter("searching_content");
+				searching.put("searching_content", searchingContent);
+				searching.put("type", type);
+				if(!type.equals("hire_date") && !type.equals("job_id") && !type.equals("full_name")) {
+					person = service.getDynamicResult(searching);
+					request.setAttribute("person", person);
+					path = "searchOne.jsp";
+				}else {
+					list = service.getDynamicResultList(searching);
+					request.setAttribute("list", list);
+					path = "allList.jsp";
+				}
+				isForward = true;
+				break;
+			}
+			// 포워드 값이 true(전달할 request 속성이 있는 경우라면)라면 디스패쳐 포워드로 패스와 함께 요청 처리를 날림
+			if(isForward) {
+				request.getRequestDispatcher(path).forward(request, response);
+			// 전달할 값(request에 세팅이 되어있지 않은 상태)이 없는 경우 그냥 경로(path)로 응답 페이지를 제공
+			}else {
+				response.sendRedirect(path);
+			}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

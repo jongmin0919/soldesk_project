@@ -1,0 +1,14 @@
+package org.joonzis.test;
+
+import java.util.Scanner;
+
+public class SingerSongMain {
+	public static void main(String[] args) {
+		Singer singer = new Singer("아이유", 3);
+		singer.setSong(singer.inputSongInfo());
+		singer.setSong(singer.inputSongInfo());
+		singer.setSong(singer.inputSongInfo());
+		singer.searchSong();
+		singer.outAllSongInformation();
+	}
+}

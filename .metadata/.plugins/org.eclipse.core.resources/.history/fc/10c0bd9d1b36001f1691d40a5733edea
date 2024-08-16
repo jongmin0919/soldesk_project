@@ -1,0 +1,25 @@
+package org.joonzis.test;
+
+public class checkParameter {
+	String checkValue(String input)  {
+        
+    }
+	
+	String checkSchedule() {
+		String schedule = "";
+		while(true) {
+			System.out.println("스케쥴을 입력해 주세요.");
+			sc.nextLine();
+			schedule = sc.nextLine();
+			
+			System.out.println("입력하신 스케쥴을 저장할까요?\n(Y/N)");
+			char indication = sc.next().charAt(0);
+			if(indication == 'N') System.out.println("스케쥴을 다시 입력해 주세요.");
+			else if(indication == 'Y') break;
+			else {
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+			}
+		}
+		return schedule;
+	}
+}

@@ -1,0 +1,10 @@
+127.0.0.1 - - [14/Aug/2024:23:03:09 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [14/Aug/2024:23:03:10 +0900] "GET /chapter10_DBCP/index.jsp HTTP/1.1" 200 4662
+0:0:0:0:0:0:0:1 - - [14/Aug/2024:23:03:38 +0900] "GET /chapter16_search/index.jsp HTTP/1.1" 200 1174
+0:0:0:0:0:0:0:1 - - [14/Aug/2024:23:03:38 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [14/Aug/2024:23:03:40 +0900] "GET /chapter16_search/Controller?cmd=allList HTTP/1.1" 200 27666
+0:0:0:0:0:0:0:1 - - [14/Aug/2024:23:03:51 +0900] "GET /chapter16_search/Controller?cmd=inputDept HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [14/Aug/2024:23:03:52 +0900] "GET /chapter16_search/inputDept.jsp HTTP/1.1" 200 1471
+0:0:0:0:0:0:0:1 - - [14/Aug/2024:23:03:54 +0900] "GET /chapter16_search/Controller?department_id=30&cmd=deptList HTTP/1.1" 200 2259
+0:0:0:0:0:0:0:1 - - [14/Aug/2024:23:03:58 +0900] "GET /chapter16_search/Controller?cmd=inputDynamic HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [14/Aug/2024:23:03:58 +0900] "GET /chapter16_search/inputDynamic.jsp HTTP/1.1" 200 437

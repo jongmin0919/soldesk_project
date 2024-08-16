@@ -1,0 +1,33 @@
+package org.joonzis.test;
+
+import java.util.Scanner;
+
+public class CricleMain {
+
+	public static void main(String[] args) {
+		Scanner sc  = new Scanner(System.in);
+		System.out.println("원의 개수를 입력해 주세요.");
+		Circle[] group = new Circle[sc.nextInt()];
+		
+		int idx = 1;
+		for(int i = 0 ; i < group.length ; i++) {
+			System.out.println("원의 반지름을 입력해 주세요");
+			double radius = sc.nextDouble();
+			group[i] = new Circle(radius, idx);	
+			idx++;
+		}
+		
+		double maxRadius = 0;
+		for(Circle item : group) {
+				
+			if(item.calcArea() > 0) {
+				maxRadius = item.calcArea();
+				idx = item.idx;
+			}
+		}
+		System.out.println(
+				"가장 큰 원은" + idx + "번째 원 입니다. \n넓이 : " + (Math.round(maxRadius) * 100) / 100 + "cm"
+		);
+	}
+
+}

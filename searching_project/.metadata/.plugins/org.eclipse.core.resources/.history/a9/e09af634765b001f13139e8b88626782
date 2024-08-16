@@ -1,0 +1,41 @@
+package org.joonzis.mybatis.config;
+
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+public class DBService {	// factory를 만드는게 목적
+
+	// 필드
+	private static SqlSessionFactory factory = null;
+	
+	// 정적 초기화 변수 (클래스가 로드될때 자동으로 실행되는 코드라고 보면 됨)
+	static {
+		try {
+			// 클래스 패스에서 위치한 sqlmap (마이바티스 설정 관련 xml)을 읽어오기 위해 
+			String resource = "org/joonzis/mybatis/config/sqlmap.xml";
+			InputStream is = Resources.getResourceAsStream(resource);
+			factory = new SqlSessionFactoryBuilder().build(is);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 메소드
+	public static SqlSessionFactory getFactory() {
+		return factory;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+

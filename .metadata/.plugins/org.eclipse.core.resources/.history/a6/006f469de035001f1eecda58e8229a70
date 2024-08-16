@@ -1,0 +1,24 @@
+package org.joonzis.test;
+
+public class Day {
+	String schedule;
+	
+	public Day() {
+	}
+	
+	public Day(String schedule) {
+		this.schedule = schedule;
+	}
+	
+	String getSchedule() {
+		return schedule;
+	}
+	
+	void setSchedule(String schedule) {
+		this.schedule = schedule;
+	}
+	
+	String output() {
+		System.out.println((schedule != null ? schedule : "없음"));
+	}
+}

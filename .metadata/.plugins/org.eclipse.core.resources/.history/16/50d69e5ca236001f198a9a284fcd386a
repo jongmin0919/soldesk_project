@@ -1,0 +1,20 @@
+package org.joonzis.test;
+
+public class Song {
+	String title ,country;
+	
+	public Song() {
+	}
+	
+	public Song(String title, String country) {
+		this.title = title;
+		this.country = country;
+	}
+	
+	void output() {
+		System.out.println(
+				"타이틀 : " + title + "\n" +
+				"나라 : " + country
+		);
+	}
+}

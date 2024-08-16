@@ -1,0 +1,12 @@
+package org.joonzis.test;
+
+public class WeekSchedulerMain {
+	public static void main(String[] args) {
+		WeekScheduler schedule1 = new WeekScheduler();
+		WeekScheduler schedule2 = new WeekScheduler();
+		WeekScheduler schedule3 = new WeekScheduler();
+		
+		
+		schedule3.run();
+	}
+}

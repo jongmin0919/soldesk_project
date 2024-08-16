@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.joonzis.mybatis.green"> <!-- 경로 표기법이 클래스명 표기법처럼 사용된다! -->
+	<!-- 
+		mapper에서는 ?(물음표)를 사용할 수 없다.
+		대신 전달한 파라미터의 이름은 #{}을 통해 적는다.
+		sql문 뒤에 ;(세미콜론)이 없다.
+	 -->
+	
+	<!-- 
+		각 태그 속성
+		1. id : id를 통해서 sql문을 선택 (임의로 결정 가능)
+		2. parameterType : 매개변수의 타입
+		3. resultType : 리턴 데이터의 타입 (풀 패키지로 작성) 
+			- insert, update, delete의 경우 무조건 int 형식이기 때문에 작성할 필요가 없다.
+	 -->
+	<!-- 1. 전체 검색 getAllList-->
+	<select id="select_all" resultType="org.joonzis.ex.GreenVO">
+		select * from green order by idx
+	</select>
+	
+	<!-- 2. 부분 검색 getUserInfoById-->
+	<select id="select_one" parameterType="string" resultType="org.joonzis.ex.GreenVO">
+		select * from green where id = #{id}
+	</select>
+	
+	<!-- 3. 회원 가입 getInsert-->
+	<insert id="insert" parameterType="org.joonzis.ex.GreenVO" >
+		insert into green values
+		(green_seq.nextval, #{id}, #{pw}, #{name}, #{age}, #{addr}, sysdate)
+	</insert>
+	
+	<!-- 4. 회원 삭제 getDelete-->
+	<delete id="delete" parameterType="org.joonzis.ex.GreenVO" >
+		delete from green where id = #{id} and pw = #{pw} 
+	</delete>
+	
+	<!-- 5. 회원 수정 정보창 전달 getUpdateView -->
+	<select id="select_for_updateView" parameterType="map" resultType="org.joonzis.ex.GreenVO">
+		 select * from green where id = #{id} and pw = #{pw}
+	</select>
+	
+	<!-- 6. 회원 정보창에서 회원 정보 수정 getUpdate -->
+	<update id="update_user" parameterType="org.joonzis.ex.GreenVO">
+		update green 
+		set pw = #{pw}, name = #{name}, age = #{age}, addr = #{addr}
+		where idx = #{idx} 
+	</update>
+</mapper>

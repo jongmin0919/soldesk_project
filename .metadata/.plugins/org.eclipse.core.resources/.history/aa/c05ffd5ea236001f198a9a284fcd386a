@@ -1,0 +1,27 @@
+package org.joonzis.test;
+
+public class Circle {
+	final double PI = Math.PI;
+	double radius;
+	int idx;
+	
+	public Circle() {
+	
+	}
+	
+	public Circle(double radius, int idx) {
+		this.radius = radius;
+		this.idx = idx;
+	}
+	
+	double calcArea(){
+		return radius * radius * PI;
+	}
+	
+	void output(){
+		System.out.println(
+				"원의 넓이는 : " + calcArea() + "입니다."
+		);
+	}
+	
+}

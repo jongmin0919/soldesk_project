@@ -1,0 +1,69 @@
+package org.joonzis.dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.joonzis.mybatis.config.DBService;
+import org.joonzis.vo.EmployeeVO;
+
+public class EmployeeDaoImpl implements EmployeeDao{
+	
+	// DAO 객체 생성
+	private static EmployeeDaoImpl instance = null;
+	public EmployeeDaoImpl() {}
+	// DAO 획득하는 함수
+	public static EmployeeDaoImpl getInstance() {
+		if(instance == null) {
+			instance = new EmployeeDaoImpl();
+		}
+		return instance;
+	}
+		
+	// 필드
+	private static SqlSession sqlsession = null;
+	// 팩토리 얻어오는 함수
+	private synchronized static SqlSession getSqlSession() {
+		if(sqlsession == null) {
+			sqlsession = DBService.getFactory().openSession(false);
+		}
+		return sqlsession;
+	}
+	
+	@Override
+	public List<EmployeeVO> getAllEmployees() {
+		return getSqlSession().selectList("select_all");
+	}
+	
+	@Override
+	public List<EmployeeVO> getOneEmployees(int department_id) {
+		return getSqlSession().selectList("select_one", department_id);
+	}
+	
+	@Override
+	public EmployeeVO getDynamicSearching(Map<String, String> searching) {
+		String type = searching.get("type");
+		String searching_content = searching.get("searching_content");
+		int number_content = 0;
+		Map<String, String> names = new HashMap<>();
+		
+		if(type.equals("employee_id")) {
+			number_content = Integer.parseInt(searching.get("searching_content"));
+			return getSqlSession().selectOne("dynamic_searching_byid", number_content);
+		}else if(type.equals("email")){
+			return getSqlSession().selectOne("dynamic_searching_byemail", searching_content);
+		}else if(type.equals("phone_number")) {
+			return getSqlSession().selectOne("dynamic_searching_bynumber", searching_content);
+		}else if(type.equals("phone_number")) {
+			
+		}else{
+			String[] nameArr = searching.get("searching_content").split(" ");
+			names.put("first_name", nameArr[0]);
+			names.put("last_name", nameArr[1]);
+			return getSqlSession().selectOne("dynamic_searching_byname", names);	
+		}
+	}
+	
+}

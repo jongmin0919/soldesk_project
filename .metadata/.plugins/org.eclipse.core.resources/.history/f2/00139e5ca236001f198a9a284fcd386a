@@ -1,0 +1,53 @@
+package org.joonzis.test;
+
+import java.util.Scanner;
+
+public class Singer {
+	String name;
+	Song[] songList;
+	int idx = 0;
+	Scanner sc = new Scanner(System.in);
+	
+	public Singer() {
+		
+	}
+	
+	public Singer(String name, int length) {
+		this.name = name;
+		songList = new Song[length];
+	}
+	
+	Song inputSongInfo() {
+		System.out.println("타이틀을 입력해 주세요.");
+		String title = sc.nextLine();
+		System.out.println("국가를 입력해 주세요.");
+		String country = sc.nextLine();
+		return new Song(title, country);
+	}
+	
+	void setSong(Song info) {
+		songList[idx] = info;
+		idx++;
+	}
+	
+	void searchSong() {
+		System.out.println("찾으실 곡을 입력해 주세요.");
+		String title = sc.nextLine();
+		for(int i = 0 ; i < idx ; i++) {
+			if(title.equals(songList[i].title)) {
+				System.out.println(
+						title + "은 " + i + "번째에 저장되어 있습니다."
+				);
+			}
+		}
+	}
+	
+	void outAllSongInformation() {
+		System.out.println("가수 이름 : " + name + "\n");
+		for(Song item : songList) {
+			item.output();
+		}
+	}
+}
+
+
